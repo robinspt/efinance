@@ -31,18 +31,29 @@ pip install efinance
 pip install efinance --upgrade
 ```
 
-- 通过 `docker` 安装
+- 通过 `docker` 安装（推荐）
 
 ```bash
-# 克隆代码
-git clone https://github.com/Micro-sheep/efinance
-# 切换工作目录为该项目的根目录
+# 方式 1：使用预构建镜像（最快）
+docker pull ghcr.io/robinspt/efinance:latest
+docker run -it --rm ghcr.io/robinspt/efinance:latest python
+
+# 方式 2：使用快捷脚本（最简单）
+git clone https://github.com/robinspt/efinance
 cd efinance
-# 构建镜像(-t 指定构建后生成的镜像名称 . 指定 build 的对象是当前工作目录下的 dockerfile)
+./run-docker.sh shell
+
+# 方式 3：运行示例脚本
+./run-docker.sh example 688802
+
+# 方式 4：传统方式
 docker build -t efinance . --no-cache
-# 以交互的方式运行镜像(运行之后自动删除容器,如不想删除 则可去掉 --rm)
-docker run --rm -it efinance
+docker run --rm -it efinance python
 ```
+
+**Docker 使用文档**：
+- 📖 [完整功能指南](DOCKER_FEATURES_GUIDE.md) - 28种数据类型的5种获取方法详解
+- 📖 [构建和推送指南](README_DOCKER.md) - Docker 镜像构建和发布
 
 - 源码安装（用于开发）
 

@@ -1,9 +1,22 @@
 version: "3"
 services:
   app:
+    # 使用 GitHub Container Registry 镜像
+    image: ghcr.io/robinspt/efinance:latest
     build:
       context: .
-    # 环境变量文件
-    env_file: ./.env
-    # 项目工作目录(可在 .env 文件中找到定义)
-    working_dir: ${APP_WORKING_DIR}
+    # 环境变量直接定义
+    environment:
+      - APP_WORKING_DIR=/app
+      - LANG=C.UTF-8
+    # 项目工作目录
+    working_dir: /app
+    # 挂载本地目录
+    volumes:
+      - ./examples:/scripts:ro  # 示例脚本（只读）
+      - ./data:/data            # 数据输出目录
+    # 默认命令：启动 Python shell
+    command: python
+    # 标准输入输出
+    stdin_open: true
+    tty: true
