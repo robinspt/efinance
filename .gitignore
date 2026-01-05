@@ -161,3 +161,14 @@ cython_debug/
 
 docs/build/
 efinance/data
+
+# Stock data files (CSV exports)
+data/
+*.csv
+
+# Database design files
+database_design.sql
+DATABASE_DESIGN_GUIDE.md
+DATABASE_SETUP_SUMMARY.md
+import_data_to_postgres.py
+MULTI_USER_ARCHITECTURE.md
